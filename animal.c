@@ -15,11 +15,15 @@
  */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 #include "animal.h"
 
-void animal_set_apelido(Animal *, char *);
+static void animal_set_apelido(Animal *, char *);
+static void animal_set_nome_dono(Animal *, char *);
+static void animal_set_raca(Animal *, char *);
+static void animal_set_cor(Animal *, char *);
 
 /*
  * Gera um novo animal
@@ -27,21 +31,35 @@ void animal_set_apelido(Animal *, char *);
 void
 animal_novo(Animal *a)
 {
+        char value[1024];
+
+        printf("Digite o apelido: ");
+        if (fgets(value, sizeof(value), stdin) != NULL)
+                value[strcspn(value, "\n")] = '\0';
 
         /* setamos o apelido do animal */
-        animal_set_apelido(a, NULL);
+        animal_set_apelido(a, value);
 
         printf("Digite o nome do dono: ");
-        if (fgets(a->nome_dono, sizeof(a->nome_dono), stdin) != NULL)
-                a->nome_dono[strcspn(a->nome_dono, "\n")] = '\0';
+        if (fgets(value, sizeof(value), stdin) != NULL)
+                value[strcspn(value, "\n")] = '\0';
+
+        /* setamos o nome do dono do animal */
+        animal_set_nome_dono(a, value);
 
         printf("Digite a raca: ");
-        if (fgets(a->raca, sizeof(a->raca), stdin) != NULL)
-                a->raca[strcspn(a->raca, "\n")] = '\0';
+        if (fgets(value, sizeof(value), stdin) != NULL)
+                value[strcspn(value, "\n")] = '\0';
+
+        /* setamos a raca do animal */
+        animal_set_raca(a, value);
 
         printf("Digite a cor: ");
-        if (fgets(a->cor, sizeof(a->cor), stdin) != NULL)
-                a->cor[strcspn(a->cor, "\n")] = '\0';
+        if (fgets(value, sizeof(value), stdin) != NULL)
+                value[strcspn(value, "\n")] = '\0';
+
+        /* setamos a raca do animal */
+        animal_set_cor(a, value);
 
         printf("Digite a idade: ");
         scanf("%d", &a->idade);
@@ -51,12 +69,41 @@ animal_novo(Animal *a)
 }
 
 void
-animal_set_apelido(Animal *a, char *val)
+animal_set_cor(Animal *a, char *val)
 {
-        if (a == NULL)
+        if (a == NULL || strlen(val) <= 0)
                 return;
 
-        printf("Digite o apelido: ");
-        if (fgets(a->apelido, sizeof(a->apelido), stdin) != NULL)
-                a->apelido[strcspn(a->apelido, "\n")] = '\0';
+        strncpy(a->cor, val, sizeof(a->cor) - 1);
+        a->cor[sizeof(a->cor) - 1] = '\0';
+}
+
+void
+animal_set_raca(Animal *a, char *val)
+{
+        if (a == NULL || strlen(val) <= 0)
+                return;
+
+        strncpy(a->raca, val, sizeof(a->raca) - 1);
+        a->raca[sizeof(a->raca) - 1] = '\0';
+}
+
+void
+animal_set_apelido(Animal *a, char *val)
+{
+        if (a == NULL || strlen(val) <= 0)
+                return;
+
+        strncpy(a->apelido, val, sizeof(a->apelido) - 1);
+        a->apelido[sizeof(a->apelido) - 1] = '\0';
+}
+
+void
+animal_set_nome_dono(Animal *a, char *val)
+{
+        if (a == NULL || strlen(val) <= 0)
+                return;
+
+        strncpy(a->nome_dono, val, sizeof(a->nome_dono) - 1);
+        a->nome_dono[sizeof(a->nome_dono) - 1] = '\0';
 }

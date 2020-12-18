@@ -34,6 +34,7 @@ main(int argc, char *argv[])
 
         /* inserir animal no petsthop */
         petshop_inserir_animal(&meupet, a);
+        petshop_listar_animal(&meupet);
 
         return (0);
 }

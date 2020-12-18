@@ -1,7 +1,7 @@
 .PHONY: petshop
 
 HEADERS = animal.h petshop.h procedimento.h
-OBJECTS = animal.o petshop.o procedimento.o
+OBJECTS = animal.o petshop.o procedimento.o main.o
 
 default: petshop
 

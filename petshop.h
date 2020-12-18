@@ -1,4 +1,6 @@
 /*
+ *
+ *
  * Copyright (c) 2020 Murilo Ijanc' <mbsd@m0x.ru>
  *
  * Permission to use, copy, modify, and distribute this software for any
@@ -35,5 +37,6 @@ typedef struct petshop_t {
 } Petshop;
 
 void petshop_inserir_animal(Petshop *, Animal);
+void petshop_listar_animal(Petshop *);
 
 #endif // _PETSHOP_H

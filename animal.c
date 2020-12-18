@@ -19,6 +19,8 @@
 
 #include "animal.h"
 
+void animal_set_apelido(Animal *, char *);
+
 /*
  * Gera um novo animal
  */
@@ -26,9 +28,8 @@ void
 animal_novo(Animal *a)
 {
 
-        printf("Digite o apelido: ");
-        if (fgets(a->apelido, sizeof(a->apelido), stdin) != NULL)
-                a->apelido[strcspn(a->apelido, "\n")] = '\0';
+        /* setamos o apelido do animal */
+        animal_set_apelido(a, NULL);
 
         printf("Digite o nome do dono: ");
         if (fgets(a->nome_dono, sizeof(a->nome_dono), stdin) != NULL)
@@ -47,4 +48,15 @@ animal_novo(Animal *a)
 
         printf("Digite o numero de registro: ");
         scanf("%d", &a->num_reg);
+}
+
+void
+animal_set_apelido(Animal *a, char *val)
+{
+        if (a == NULL)
+                return;
+
+        printf("Digite o apelido: ");
+        if (fgets(a->apelido, sizeof(a->apelido), stdin) != NULL)
+                a->apelido[strcspn(a->apelido, "\n")] = '\0';
 }

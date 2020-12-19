@@ -19,6 +19,7 @@
 #include <string.h>
 
 #include "petshop.h"
+#include "procedimento.h"
 
 int
 main(int argc, char *argv[])
@@ -32,9 +33,16 @@ main(int argc, char *argv[])
         Animal a;
         animal_novo(&a);
 
+        Animal b;
+        animal_novo(&b);
+
         /* inserir animal no petsthop */
         petshop_inserir_animal(&meupet, a);
+        petshop_inserir_animal(&meupet, b);
         petshop_listar_animal(&meupet);
+
+        /* Procedimento *p = procedimento_novo(); */
+        /* procedimento_liberar(p); */
 
         return (0);
 }

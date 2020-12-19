@@ -30,4 +30,7 @@ struct procedimento_t {
         Procedimento            *proximo;
 };
 
+Procedimento    *procedimento_novo(void);
+void             procedimento_liberar(Procedimento *);
+
 #endif // _PROCEDIMENTO_H

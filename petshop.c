@@ -23,6 +23,9 @@
 /* numero maximo de animais */
 #define MAX_ANIMAL 100
 
+static void bubble_sort(Petshop *, int);
+static void swap(int *, int *);
+
 void
 petshop_inserir_animal(Petshop *p, Animal a)
 {
@@ -30,6 +33,7 @@ petshop_inserir_animal(Petshop *p, Animal a)
         if (p->qtd_animais < MAX_ANIMAL) {
                 p->animais[p->qtd_animais] = a;
                 p->qtd_animais++;
+                bubble_sort(p, p->qtd_animais);
         }
 }
 
@@ -44,4 +48,26 @@ petshop_listar_animal(Petshop *p)
                 printf("Reg: [%d] Apelido: %s\n", a.num_reg, a.apelido);
                 count++;
         }
+}
+
+static void
+swap(int *xp, int *yp)
+{
+    int temp = *xp;
+
+    *xp = *yp;
+    *yp = temp;
+}
+
+static void
+bubble_sort(Petshop *p, int n)
+{
+        int i;
+        int j;
+
+        for (i = 0; i < n-1; i++)
+                for (j = 0; j < n-i-1; j++)
+                        if (p->animais[j].num_reg > p->animais[j+1].num_reg)
+                                swap(&p->animais[j].num_reg,
+                                    &p->animais[j+1].num_reg);
 }

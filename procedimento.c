@@ -19,14 +19,6 @@
 #include <string.h>
 
 #include "procedimento.h"
-/*
-char                     data[10];
-char                     descricao[40];
-float                    valor;
-int                      codigo;
-int                      qtd_procedimento;
-Procedimento            *proximo;
-*/
 
 static void procedimento_set_data(Procedimento *, char *);
 static void procedimento_set_desc(Procedimento *, char *);
@@ -34,7 +26,7 @@ static void procedimento_set_desc(Procedimento *, char *);
 Procedimento *
 procedimento_novo(void)
 {
-        char             value[1024];
+        char             value[1024] = {0};
         Procedimento    *p = NULL;
 
         if ((p = malloc(sizeof(Procedimento))) == NULL)
@@ -58,6 +50,7 @@ procedimento_novo(void)
         printf("Digite codigo: ");
         scanf("%d", &p->codigo);
 
+        p->qtd_procedimento = 0;
         p->proximo = NULL;
 }
 
@@ -79,4 +72,11 @@ procedimento_set_data(Procedimento *p, char *val)
 
         strncpy(p->data, val, sizeof(p->data) - 1);
         p->data[sizeof(p->data) - 1] = '\0';
+}
+
+void
+procedimento_liberar(Procedimento *p)
+{
+        if (p != NULL)
+                free(p);
 }
